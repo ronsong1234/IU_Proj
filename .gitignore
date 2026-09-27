@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Project-specific ---
+data/
+*.npz
+.venv/
+*.duckdb
+*.duckdb.wal
+*.parquet

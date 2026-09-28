@@ -98,5 +98,9 @@ if __name__ == "__main__":
     write_results(results, low_var, dups)
     print(results.to_string(index=False))
 
+    import sys
+    if (results["status"] == "FAIL").any():
+        sys.exit("Validation failed; see checks above. Not exporting results.")
+
     from src.export_results import export_all
     print("\nExported:", ", ".join(p.name for p in export_all()))

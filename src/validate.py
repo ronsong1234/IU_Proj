@@ -155,3 +155,7 @@ if __name__ == "__main__":
     results, low_var, dups = run_checks(meta)
     write_results(results, low_var, dups)
     print(results.to_string(index=False))
+
+    import sys
+    if (results["status"] == "FAIL").any():
+        sys.exit("Validation failed; see checks above. Not exporting results.")

@@ -7,7 +7,7 @@ a simple scikit-learn baseline for normal vs. pneumonia.
 ```
 README.md
 requirements.txt
-Notebooks/
+notebooks/
     01_exp.ipynb                end-to-end walkthrough: every step, output, figure and commentary
 src/
     download_data.py            download the dataset from the official Zenodo record
@@ -51,13 +51,25 @@ pip install -r requirements.txt
 **2. Obtain the dataset** (PneumoniaMNIST 28x28, official MedMNIST+ record,
 https://doi.org/10.5281/zenodo.10519652)
 
+Either option produces `data/pneumoniamnist.npz` (4.2 MB), which is all the pipeline needs.
+
+*Option A: official `medmnist` package*
+
 ```
-python -m src.download_data       # -> data/pneumoniamnist.npz (4.2 MB); skipped if present
+pip install medmnist
+python -c "import os; os.makedirs('data', exist_ok=True); from medmnist import PneumoniaMNIST; PneumoniaMNIST(split='train', download=True, root='data', size=28)"
 ```
 
-Alternatives: download `pneumoniamnist.npz` from the Zenodo record by hand into `data/`,
-or use the official `medmnist` package (`pip install medmnist`; not in our requirements
-because it pulls in PyTorch).
+*Option B: directly from the official Zenodo distribution* (no extra install)
+
+```
+python -m src.download_data       # verifies the MD5; skipped if a valid file is already present
+```
+
+`medmnist` is not in `requirements.txt` because it installs PyTorch (several hundred MB),
+which this project does not otherwise use. Option B needs only the standard library, and
+the notebook uses it. You can also download `pneumoniamnist.npz` by hand from the Zenodo
+record into `data/`.
 
 **3. Run the pipeline** (build the metadata table, run the validation checks, export CSVs)
 
@@ -72,9 +84,9 @@ python -m src.validate            # optional: re-run the checks alone
 python -m src.baseline            # model selection on val, one final test evaluation -> output/model_metrics.csv
 ```
 
-The full analysis (SQL queries, figures, commentary) is in `Notebooks/01_exp.ipynb`.
+The full analysis (SQL queries, figures, commentary) is in `notebooks/01_exp.ipynb`.
 Open it in VS Code or Jupyter with the `.venv` interpreter as the kernel and
-**Run All**. The notebook expects to run from `Notebooks/` (it sets `ROOT` to the
+**Run All**. The notebook expects to run from `notebooks/` (it sets `ROOT` to the
 parent folder) and repeats steps 2–4 itself, so it also works on a fresh clone.
 Any SQL file can also be run directly:
 
@@ -110,6 +122,10 @@ Validation writes three more tables: `validation_results` (one row per check),
 
 ### Important assumptions
 
+- **Dataset: PneumoniaMNIST, not PathMNIST.** The assignment names PathMNIST, but it
+  describes binary grayscale chest X-rays (normal vs pneumonia). PathMNIST is a 9-class
+  RGB colon-pathology dataset. The description and every question match PneumoniaMNIST,
+  so that is what this pipeline uses.
 - The label mapping 0 = normal, 1 = pneumonia comes from the MedMNIST dataset info; the
   `.npz` itself does not record it.
 - Expected split sizes (4,708 / 524 / 624) are the official PneumoniaMNIST sizes.
@@ -120,8 +136,8 @@ Validation writes three more tables: `validation_results` (one row per check),
 
 ### Validation checks
 
-Run by `src/validate.py`. The first four checks FAIL the run if violated; the last two
-are reported as WARN, for human review.
+Run by `src/validate.py`. If any of the first four checks FAIL, the command exits with a
+non-zero code and nothing is exported. The last two are reported as WARN, for human review.
 
 | Check | Rule | Result |
 |---|---|---|
@@ -298,19 +314,28 @@ different. Something like this is already visible: performance drops from valida
 
 ## AI assistance
 
-1. **Tool:** Claude Code (Anthropic's coding assistant, Claude Opus 5.5 model) in VS Code.
-2. **What for:** setting up the environment and fixing the dataset download; writing the
-   pipeline, validation, SQL queries, baseline model and plotting code; drafting parts
-   of this README. I directed each step, ran the code, and reviewed the outputs and
-   figures.
+1. **Tools:**
+   - Claude in claude.ai (chat), for planning, project setup, debugging, and reviewing
+     the finished repo.
+   - Claude Code (Anthropic's coding assistant, Claude Opus 5.5 model) in VS Code.
+2. **What for:**
+   - In chat: planning the approach, setting up the project, debugging, and a final
+     review of the repo.
+   - Claude Code: setting up the environment and fixing the dataset download; writing
+     the pipeline, validation, SQL queries, baseline model and plotting code; drafting
+     parts of this README.
+   - I directed each step, ran the code, and reviewed the outputs and figures.
 3. **Checked, changed or rejected:**
-   - *Rejected:* the assistant's first plan was to install `requirements.txt` as it
-     was, including `medmnist`, which pulls in PyTorch (hundreds of MB) just to download
-     one 4 MB file. I rejected this and had it remove `medmnist`. The dataset is now
-     downloaded directly from the official Zenodo record with the standard library
-     (`src/download_data.py`).
-   - *Checked:* the assistant's first diagnosis of the HTTP 403 download error was a
-     server-side block, and it switched to a different Zenodo URL. Testing showed the
-     real cause was the fake browser `User-Agent` header in the download code; the
-     original URL works without it. The fix and a comment explaining it are in
+   - *Caught an AI mistake:* claude.ai suggested adding a browser `User-Agent` header
+     (`"Mozilla/5.0"`) to the download request. Zenodo then answered HTTP 403. Claude
+     Code first misdiagnosed this as a server-side block and switched to a different
+     URL. Testing both with and without the header showed the header itself caused the
+     403. I removed it; the fix and a comment explaining it are in
      `src/download_data.py`.
+   - *Rejected:* Claude Code's first plan was to install `requirements.txt` as it was,
+     including `medmnist`, which pulls in PyTorch (hundreds of MB) just to download one
+     4 MB file. I had it removed from the requirements. The script downloads directly
+     from Zenodo instead, and `medmnist` is documented as an optional route.
+   - *Checked:* the final review found that FAIL checks were reported but did not stop
+     the pipeline. I confirmed this by injecting invalid labels, then fixed it: the
+     pipeline now exits non-zero and exports nothing.

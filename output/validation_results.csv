@@ -1,0 +1,7 @@
+check,status,detail
+split_counts,PASS,"train=4708 (expected 4708), val=524 (expected 524), test=624 (expected 624)"
+label_values,PASS,"0 rows with labels outside [0, 1]; observed [0, 1]"
+image_dimensions,PASS,"all images 28x28, 1 channel"
+missing_or_invalid,PASS,"no nulls, non-finite, out-of-range or inconsistent values"
+low_variance,WARN,46 images with std_intensity < 14.21 (Q1 - 1.5 x IQR); lowest std 6.32
+exact_duplicates,WARN,27 groups of identical images covering 56 images (SHA-1 of pixels); 8 groups span splits; 0 groups have conflicting labels

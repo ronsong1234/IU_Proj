@@ -1,0 +1,34 @@
+reason,image_id,split,split_index,label_name,mean_intensity,std_intensity,min_intensity,max_intensity,pixel_sha1,robust_z,rank_in_reason
+very bright,train_02377,train,2377,pneumonia,225.5,12.9,185,249,5392aac95176931c352d6f4874a0bf425ed52ea5,4.15,1
+very dark,test_00151,test,151,pneumonia,64.9,22.5,17,140,8eb90492bb536d807c0109ca771e454d4142adeb,-4.3,1
+very dark,train_00821,train,821,pneumonia,70.6,23.0,17,143,90e3995707a6f1a9ab6029b0e4574a97561b7589,-4.01,2
+very dark,train_01690,train,1690,pneumonia,72.1,19.2,27,130,0ee4e1c0d027e92b3ec76ac57e7a6430e0a3f4e4,-3.93,3
+very dark,train_04590,train,4590,pneumonia,72.1,19.2,27,130,0ee4e1c0d027e92b3ec76ac57e7a6430e0a3f4e4,-3.93,4
+very dark,train_04426,train,4426,pneumonia,73.4,51.0,4,197,b3744570fdc27edcd3890a26b4e1386303d22935,-3.86,5
+very dark,train_02528,train,2528,pneumonia,76.9,29.0,2,152,c1f3c94f4327314d88cfbd8fd295bc7bc7295c40,-3.68,6
+very dark,train_03911,train,3911,pneumonia,77.4,22.6,35,133,6682da327c6c8120bafc2f339d016af1b3d53220,-3.65,7
+very dark,test_00165,test,165,normal,78.4,87.4,0,235,8f785f4201febe7ff9751c400511eaab115a0254,-3.6,8
+very dark,train_01435,train,1435,pneumonia,78.7,24.8,13,136,b6f84b4d0e9667a4e06576a5b7792b05598138f9,-3.58,9
+very dark,val_00328,val,328,pneumonia,78.9,22.3,41,133,7771cdf0b7dfca6137a0dee04919999ece54b08a,-3.57,10
+very high contrast,test_00165,test,165,normal,78.4,87.4,0,235,8f785f4201febe7ff9751c400511eaab115a0254,6.09,1
+very high contrast,val_00130,val,130,normal,145.3,71.5,0,249,7d557dd94d9fbd2fe26109a320cb223bc5d20cf3,4.18,2
+very high contrast,train_00453,train,453,normal,138.7,70.4,7,254,5818d0b7ba40add6783caddd51f104b60ece9058,4.05,3
+very high contrast,test_00114,test,114,normal,161.3,70.3,0,242,2b60b5e3bcd93c4e853f7069c690bf71673668e7,4.04,4
+very high contrast,val_00198,val,198,normal,144.9,69.1,0,245,862ee6a4a191164374b5155f346616f5cb9cef37,3.89,5
+very high contrast,test_00062,test,62,normal,148.2,69.0,0,252,828b4a34c67b8edd8f30f0a35ff530e0e3117664,3.88,6
+very high contrast,train_02493,train,2493,pneumonia,137.5,68.2,0,233,425ba3242e4c7aeea6162d7525b054995c650e31,3.79,7
+very high contrast,test_00319,test,319,normal,151.7,68.1,0,245,b556d10d725ebd116703b710df254189ac4040b7,3.77,8
+very high contrast,test_00433,test,433,normal,138.1,67.7,9,243,9b0a149d8c3de0e909ed7b23a1f36e3542287408,3.72,9
+very high contrast,train_00604,train,604,normal,151.0,67.3,1,255,c68b5a033341cdf7627bd4c7fe2e8abcd216b746,3.68,10
+very high contrast,train_00215,train,215,normal,157.5,67.3,1,248,b027c130d9820f3d0dd8fb7dc8edffc1c68c5acc,3.68,11
+very high contrast,test_00139,test,139,normal,140.8,67.3,0,243,2facb26e7d1d7c11e49ea1c5308013b5d04d0212,3.67,12
+very high contrast,train_02695,train,2695,normal,143.2,67.1,3,236,7624bcf5c00d89933c2ea1bd67a83b66f81ad2dd,3.65,13
+very high contrast,val_00358,val,358,normal,132.7,66.9,0,249,f04cb01acefbc7c0a568d87d5dcac4090a553f3c,3.63,14
+very high contrast,train_02191,train,2191,normal,138.0,66.7,0,233,2dcc982822855d97dfe8f5e3fd8ee051350da098,3.61,15
+very high contrast,train_00603,train,603,normal,150.0,66.6,0,246,fb455ac559e53a45b521ec1c0e107db5c99241fd,3.59,16
+very high contrast,train_01282,train,1282,normal,160.3,66.5,0,249,853e3e740af5c688bb70f2adbb1353776865e55a,3.58,17
+very high contrast,train_02160,train,2160,pneumonia,144.0,66.3,0,221,8e65fe2e9f1683468503e942d9566a050a15bcd0,3.55,18
+very high contrast,train_03468,train,3468,normal,151.5,66.2,0,255,eeb9584a8ffa6c4504f4db1c30d0c57540b24dfc,3.54,19
+very high contrast,train_03745,train,3745,pneumonia,161.8,66.1,0,240,44024be22e5a5346c20f15e7a80ac291d555182f,3.53,20
+very high contrast,train_02515,train,2515,normal,150.8,66.0,3,249,e958cca260edeafa27540be915e67a42138ca21c,3.52,21
+very low contrast,train_03327,train,3327,pneumonia,193.5,6.3,163,217,dea436d6cf07465c2f4ccddda62c0e940ec90ccc,-3.63,1

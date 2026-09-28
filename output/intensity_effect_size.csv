@@ -1,0 +1,9 @@
+statistic,split,normal_mean,pneumonia_mean,diff,cohens_d
+mean_intensity,train,139.9,147.9,8.0,0.41
+mean_intensity,val,140.49,146.75,6.26,0.32
+mean_intensity,test,141.59,145.15,3.56,0.2
+mean_intensity,all,140.2,147.55,7.35,0.38
+std_intensity,train,44.03,34.42,-9.61,-1.19
+std_intensity,val,44.4,34.39,-10.01,-1.21
+std_intensity,test,44.44,34.35,-10.1,-1.33
+std_intensity,all,44.12,34.41,-9.71,-1.21

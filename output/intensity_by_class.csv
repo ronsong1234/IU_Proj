@@ -1,0 +1,11 @@
+statistic,class,n_images,mean,sd,q1,median,q3
+mean_intensity,normal,1583,140.2,14.36,130.94,140.93,149.57
+mean_intensity,pneumonia,4273,147.55,21.13,135.11,149.79,162.32
+std_intensity,normal,1583,44.12,8.11,38.53,43.08,49.13
+std_intensity,pneumonia,4273,34.41,8.02,29.41,34.25,39.37
+median_intensity,normal,1583,145.44,15.73,136.0,146.0,155.0
+median_intensity,pneumonia,4273,153.32,24.01,140.0,156.0,170.5
+min_intensity,normal,1583,21.43,24.31,0.0,11.0,40.0
+min_intensity,pneumonia,4273,47.9,29.41,27.0,48.0,66.0
+max_intensity,normal,1583,223.98,14.05,216.0,226.0,233.0
+max_intensity,pneumonia,4273,202.37,17.79,193.0,201.0,214.0

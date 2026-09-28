@@ -158,4 +158,4 @@ if __name__ == "__main__":
 
     import sys
     if (results["status"] == "FAIL").any():
-        sys.exit("Validation failed; see checks above. Not exporting results.")
+        sys.exit("Validation failed; see checks above.")
